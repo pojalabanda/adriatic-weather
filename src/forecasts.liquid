@@ -10,7 +10,7 @@ area: {{ area }}
 ---
 
 {% for fc in adriatic[area] %}
-    <div id="forecast-{{ area }}-{{ fc[0] }}" class="forecast hidden relative ">
+    <div id="forecast-{{ area }}-{{ fc[0] }}" class="forecast hidden relative">
         {% for image in adriatic[area][fc[0]].images %}
             <img src="{{ image }}" class="forecast-image hidden w-full h-auto">
         {% endfor %}
