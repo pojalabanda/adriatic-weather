@@ -74,7 +74,6 @@
         let images = [];
         const areaSelector = document.getElementById('areaSelector');
         const forecastSelector = document.getElementById('forecastSelector');
-        const allForecasts = document.querySelectorAll('.forecast');
 
         function showImage(index) {
            images.forEach((img, i) => {
@@ -85,25 +84,27 @@
         function updateCarousel() {
             const selectedArea = areaSelector.value;
             const selectedForecast = forecastSelector.value;
-            const carouselId = `forecast-${selectedArea}-${selectedForecast}`;
-            const prevButtonId = `prevButton-${selectedArea}-${selectedForecast}`;
-            const nextButtonId = `nextButton-${selectedArea}-${selectedForecast}`;
+            const forecastId = `forecast-${selectedArea}-${selectedForecast}`;
+            const allForecasts = document.querySelectorAll('.forecast');
 
             allForecasts.forEach(fc => fc.classList.add('hidden'));
 
-            const selectedCarousel = document.getElementById(carouselId);
+            const selectedCarousel = document.getElementById(forecastId);
             if (selectedCarousel) {
+                const prevButton = document.getElementById(`prevButton-${selectedArea}-${selectedForecast}`);
+                const nextButton = document.getElementById(`nextButton-${selectedArea}-${selectedForecast}`);
+
                 selectedCarousel.classList.remove('hidden');
                 currentIndex = 0;
                 images = selectedCarousel.querySelectorAll('.forecast-image');
                 showImage(currentIndex)
 
-                document.getElementById(prevButtonId).addEventListener('click', () => {
+                prevButton.addEventListener('click', () => {
                     currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
                     showImage(currentIndex);
                 });
 
-                document.getElementById(nextButtonId).addEventListener('click', () => {
+                nextButton.addEventListener('click', () => {
                     currentIndex = (currentIndex + 1) % images.length;
                     showImage(currentIndex);
                 });
@@ -112,7 +113,6 @@
             currentUrl = new URL(window.location.href)
             currentUrl.searchParams.set('forecast', `${selectedForecast}`);
             window.history.replaceState(null, null, currentUrl.toString());
-
         }
 
         function updateForecast() {
@@ -128,10 +128,10 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
-            const forecast = urlParams.get('forecast');
+            const forecastParam = urlParams.get('forecast');
 
-            if (forecast) {
-                forecastSelector.value = forecast;
+            if (forecastParam) {
+                forecastSelector.value = forecastParam;
             }
 
             if (window.location.pathname.startsWith('/adriatic')) {
