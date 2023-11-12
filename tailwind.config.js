@@ -6,16 +6,16 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                'primary': '#1c1c1c',
-                'secondary': '#e6242d',
+                'primary': '#f5f5f5',
+                'secondary': '#031c97',
                 'tertiary': '#f5f5f5',
                 'muted': '#7a7a7a',
             },
             backgroundColor: {
-                'link-hover': '#f4c10b',
+                'link-hover': '#7a7a7a',
             },
             borderColor: {
-               'link': '#f4c10b',
+               'link': '#031c97',
                DEFAULT: '#D5D4D3',
             },
             spacing: {
@@ -31,17 +31,7 @@ module.exports = {
             fontFamily: {
                 serif: ['Bitter', 'Arial', 'Helvetica', 'serif'],
                 sans: ['IBM Plex Sans', 'sans-serif']
-            },
-            typography: (theme) => ({
-                DEFAULT: {
-                    css: {
-                        color: '#212529',
-                    }
-                }
-            })
+            }
         }
-    },
-    plugins: [
-        require("@tailwindcss/typography")
-    ]
+    }
 }
