@@ -10,11 +10,14 @@ area: {{ area }}
 ---
 
 {% for fc in adriatic[area] %}
-    <div id="forecast-{{ area }}-{{ fc[0] }}" class="forecast hidden relative">
-        {% for image in adriatic[area][fc[0]].images %}
-            <img src="{{ image }}" class="forecast-image hidden w-full h-auto">
-        {% endfor %}
-        <button id="prevButton-{{ area }}-{{ fc[0] }}" class="forecast-button left-0 absolute inset-y-0 w-1/5 h-full bg-transparent flex items-center justify-start" aria-label="Previous"><img src="/assets/arrow-left.svg" alt="Previous" class="w-10"></button>
-        <button id="nextButton-{{ area }}-{{ fc[0] }}" class="forecast-button right-0 absolute inset-y-0 w-1/5 h-full bg-transparent flex items-center justify-end" aria-label="Next"><img src="/assets/arrow-right.svg" alt="Next" class="w-10"></button>
+    <div id="forecast-{{ area }}-{{ fc[0] }}" class="forecast hidden">
+        <div class="relative">
+            {% for image in adriatic[area][fc[0]].images %}
+                <img src="{{ image }}" class="forecast-image hidden w-full h-auto">
+            {% endfor %}
+            <button id="prevButton-{{ area }}-{{ fc[0] }}" class="forecast-button left-0 absolute inset-y-0 w-1/5 h-full bg-transparent flex items-center justify-start" aria-label="Previous"><img src="/assets/arrow-left.svg" alt="Previous" class="w-10"></button>
+            <button id="nextButton-{{ area }}-{{ fc[0] }}" class="forecast-button right-0 absolute inset-y-0 w-1/5 h-full bg-transparent flex items-center justify-end" aria-label="Next"><img src="/assets/arrow-right.svg" alt="Next" class="w-10"></button>
+        </div>
+        <p class="text-right m-8">Vir napovedi: <a href="{{ adriatic[area][fc[0]].source }}" target="_blank" rel="noopener noreferrer" class="no-underline border-b-2 border-link hover:bg-link-hover">meteo.hr</a></p>
     </div>
 {% endfor %}
