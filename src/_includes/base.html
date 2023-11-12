@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="sl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=IBM+Plex+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <script type="module" src="/code/main.js"></script>
+    <link rel="stylesheet" href="/styles/main.sass">
+    <meta name="google-site-verification" content="TBD" />
+    <meta name="description" content="{{ summary }}">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="{{ summary }}">
+    <meta property="og:site_name" content="Vremenska napoved za Jadran - Adriatic Weather Forecast">
+    <meta property="og:image" content="{{ site.baseurl }}/assets/pbj-cfc8b925.jpg">
+</head>
+
+<body class="font-serif bg-tertiary">
+    <header>
+        <nav class="bg-primary mb-3gap text-white flex items-center min-h-[75px] px-3" aria-label="Main">
+            <a href="/"><img src="/assets/logo-pojalabanda.svg" alt="pojalabanda.com" width="50"></a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+            {{ content }}
+        {% endblock %}
+    </main>
+
+    <footer class="bg-primary text-white py-4 mt-4">
+        <div class="container mx-auto px-4">
+          <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-2 md:mb-0">
+              <p><a href="https://meteo.hr/" class="no-underline border-b-2 border-link hover:bg-link-hover">meteo.hr</a> - vremenske napovedi Aladin/HR</p>
+            </div>
+
+            <div>
+              <p>Storitev nudi <a href="https://pojalabanda.com" target="_blank" rel="noopener noreferrer" class="no-underline border-b-2 border-link hover:bg-link-hover">
+                pojalabanda.com</a></p>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <script>
+        let currentIndex = 0;
+        let images = [];
+        const areaSelector = document.getElementById('areaSelector');
+        const forecastSelector = document.getElementById('forecastSelector');
+        const allForecasts = document.querySelectorAll('.forecast');
+
+        function showImage(index) {
+           images.forEach((img, i) => {
+                img.classList.toggle('hidden', i !== index);
+            });
+        }
+
+        function updateCarousel() {
+            const selectedArea = areaSelector.value;
+            const selectedForecast = forecastSelector.value;
+            const carouselId = `forecast-${selectedArea}-${selectedForecast}`;
+            const prevButtonId = `prevButton-${selectedArea}-${selectedForecast}`;
+            const nextButtonId = `nextButton-${selectedArea}-${selectedForecast}`;
+
+            allForecasts.forEach(fc => fc.classList.add('hidden'));
+
+            const selectedCarousel = document.getElementById(carouselId);
+            if (selectedCarousel) {
+                selectedCarousel.classList.remove('hidden');
+                currentIndex = 0;
+                images = selectedCarousel.querySelectorAll('.forecast-image');
+                showImage(currentIndex)
+
+                document.getElementById(prevButtonId).addEventListener('click', () => {
+                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+                    showImage(currentIndex);
+                });
+
+                document.getElementById(nextButtonId).addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    showImage(currentIndex);
+                });
+            }
+        }
+
+        areaSelector.addEventListener('change', updateCarousel);
+        forecastSelector.addEventListener('change', updateCarousel);
+
+        updateCarousel();
+    </script>
+
+</body>
+
+</html>

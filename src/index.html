@@ -1,0 +1,27 @@
+---
+layout: base.html
+---
+
+<select id="areaSelector">
+{% for area in adriatic %}
+    <option value="{{ area[0] }}">{{ area[0] }}</option>
+{% endfor %}
+</select>
+
+<select id="forecastSelector">
+{% for fc in adriatic["adriatic"] %}
+    <option value="{{ fc[0] }}">{{ fc[0] }}</option>
+{% endfor %}
+</select>
+
+{% for area in adriatic %}
+    {% for fc in adriatic[area[0]] %}
+        <div id="forecast-{{ area[0] }}-{{ fc[0] }}" class="forecast hidden relative ">
+            {% for image in adriatic[area[0]][fc[0]].images %}
+                <img src="{{ image }}" class="forecast-image hidden w-full h-auto">
+            {% endfor %}
+            <button id="prevButton-{{ area[0] }}-{{ fc[0] }}" class="forecast-button left-0">Previous</button>
+            <button id="nextButton-{{ area[0] }}-{{ fc[0] }}" class="forecast-button right-0">Next</button>
+        </div>
+    {% endfor %}
+{% endfor %}

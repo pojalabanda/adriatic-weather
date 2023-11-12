@@ -1,0 +1,8 @@
+.DS_Store
+
+.fake
+
+node_modules
+
+venv
+dist
