@@ -31,7 +31,17 @@ module.exports = {
             fontFamily: {
                 serif: ['Bitter', 'Arial', 'Helvetica', 'serif'],
                 sans: ['IBM Plex Sans', 'sans-serif']
-            }
+            },
+            typography: (theme) => ({
+                DEFAULT: {
+                    css: {
+                        color: '#212529',
+                    }
+                }
+            })
         }
-    }
+    },
+    plugins: [
+        require('@tailwindcss/typography'),
+    ]
 }

@@ -1,15 +1,14 @@
 ---
 layout: base.html
 ---
+<div class="prose lg:prose-lg prose-neutral mx-auto px-gap prose-headings:font-sans prose-headings:font-bold"></div>
 
-{% for area in adriatic %}
-    {% for fc in adriatic[area[0]] %}
-        <div id="forecast-{{ area[0] }}-{{ fc[0] }}" class="forecast hidden relative ">
-            {% for image in adriatic[area[0]][fc[0]].images %}
-                <img src="{{ image }}" class="forecast-image hidden w-full h-auto">
-            {% endfor %}
-            <button id="prevButton-{{ area[0] }}-{{ fc[0] }}" class="forecast-button left-0 absolute inset-y-0 w-1/5 h-full bg-transparent flex items-center justify-start" aria-label="Previous"><img src="/assets/arrow-left.svg" alt="Previous" class="w-10"></button>
-            <button id="nextButton-{{ area[0] }}-{{ fc[0] }}" class="forecast-button right-0 absolute inset-y-0 w-1/5 h-full bg-transparent flex items-center justify-end" aria-label="Next"><img src="/assets/arrow-right.svg" alt="Next" class="w-10"></button>
-        </div>
-    {% endfor %}
-{% endfor %}
+<p>Spletna stran je samo enostaven prikazovalnik napovedi <a href="https://meteo.hr" class="no-underline border-b-2 border-link hover:bg-link-hover">hrvaškega DHMZ</a>.</p>
+
+<li><a href="adriatic/" class="no-underline border-b-2 border-link hover:bg-link-hover">Jadransko morje</a></li>
+<li><a href="adriatic-north/" class="no-underline border-b-2 border-link hover:bg-link-hover">Severni Jadran</a></li>
+<li><a href="adriatic-central/" class="no-underline border-b-2 border-link hover:bg-link-hover">Srednji Jadran</a></li>
+<li><a href="adriatic-south/" class="no-underline border-b-2 border-link hover:bg-link-hover">Južni Jadran</a></li>
+
+
+</div>

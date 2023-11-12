@@ -33,13 +33,13 @@
             <a href="/"><img src="/assets/logo-pojalabanda.svg" alt="pojalabanda.com" class="h-12 mr-4"></a>
 
             <div class="flex space-x-4">
-                <select id="areaSelector" class="border border-gray-300 rounded-md p-2">
-                    {% for area in adriatic %}
-                        <option value="{{ area[0] }}">{{ area[0] }}</option>
+                <select id="areaSelector" class="hidden border border-gray-300 rounded-md p-2">
+                    {% for ar in adriatic %}
+                        <option value="{{ ar[0] }}" {% if ar[0] == area %}selected{% endif %}>{{ ar[0] }}</option>
                     {% endfor %}
                 </select>
 
-                <select id="forecastSelector" class="border border-gray-300 rounded-md p-2">
+                <select id="forecastSelector" class="hidden border border-gray-300 rounded-md p-2">
                     {% for fc in adriatic["adriatic"] %}
                         <option value="{{ fc[0] }}">{{ fc[0] }}</option>
                     {% endfor %}
@@ -67,9 +67,9 @@
             </div>
           </div>
         </div>
-      </footer>
+    </footer>
 
-      <script>
+    <script>
         let currentIndex = 0;
         let images = [];
         const areaSelector = document.getElementById('areaSelector');
@@ -108,12 +108,38 @@
                     showImage(currentIndex);
                 });
             }
+
+            currentUrl = new URL(window.location.href)
+            currentUrl.searchParams.set('forecast', `${selectedForecast}`);
+            window.history.replaceState(null, null, currentUrl.toString());
+
         }
 
-        areaSelector.addEventListener('change', updateCarousel);
+        function updateForecast() {
+            const selectedArea = areaSelector.value;
+            const selectedForecast = forecastSelector.value;
+            if (selectedArea) {
+                window.location.href = `/${selectedArea}/?forecast=${selectedForecast}`;
+            }
+        }
+
+        areaSelector.addEventListener('change', updateForecast);
         forecastSelector.addEventListener('change', updateCarousel);
 
-        updateCarousel();
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const forecast = urlParams.get('forecast');
+
+            if (forecast) {
+                forecastSelector.value = forecast;
+            }
+
+            if (window.location.pathname.startsWith('/adriatic')) {
+                areaSelector.classList.remove('hidden');
+                forecastSelector.classList.remove('hidden');
+                updateCarousel();
+            }
+        });
     </script>
 
 </body>
