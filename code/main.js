@@ -66,9 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
         areaSelector.classList.remove('hidden');
         forecastSelector.classList.remove('hidden');
     }
-    else {
-        pageTitle.classList.remove('hidden');
-    }
     updateCarousel();
 
     const now = new Date();

@@ -31,9 +31,10 @@
         <nav class="bg-primary flex items-center p-4" aria-label="Main">
             <a href="/"><img src="/assets/logo-pojalabanda.svg" alt="{{ site.host }}" class="h-12 mr-4"></a>
 
-            <div id="pageTitle" class="hidden font-bold">{{ title }} </div>
-
             <div class="flex space-x-4">
+
+                <div id="pageTitle" class="font-bold">{{ title }} </div>
+
                 <select id="areaSelector" class="hidden border border-gray-300 rounded-md p-2">
                     {% assign path = page.filePathStem | remove_first: '/' %}
                     {% assign adriaticStr = "adriatic" %}
