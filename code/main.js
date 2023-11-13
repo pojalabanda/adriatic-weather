@@ -3,10 +3,21 @@ let images = [];
 const areaSelector = document.getElementById('areaSelector');
 const forecastSelector = document.getElementById('forecastSelector');
 
+
 function showImage(index) {
    images.forEach((img, i) => {
         img.classList.toggle('hidden', i !== index);
     });
+}
+
+function prevImage() {
+    currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+    showImage(currentIndex);
+}
+
+function nextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    showImage(currentIndex);
 }
 
 function updateCarousel() {
@@ -19,23 +30,34 @@ function updateCarousel() {
 
     const selectedCarousel = document.getElementById(forecastId);
     if (selectedCarousel) {
+        let autoplayInterval;
+        const autoplayDelay = 1000;
         const prevButton = document.getElementById(`prevButton-${selectedArea}-${selectedForecast}`);
         const nextButton = document.getElementById(`nextButton-${selectedArea}-${selectedForecast}`);
+        const autoPlayButton = document.getElementById(`autoPlayButton-${selectedArea}-${selectedForecast}`);
+        const playImage = document.getElementById(`playImage-${selectedArea}-${selectedForecast}`);
+        const pauseImage = document.getElementById(`pauseImage-${selectedArea}-${selectedForecast}`);
 
         selectedCarousel.classList.remove('hidden');
         currentIndex = 0;
         images = selectedCarousel.querySelectorAll('.forecast-image');
         showImage(currentIndex)
 
-        prevButton.addEventListener('click', () => {
-            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
-            showImage(currentIndex);
+
+        autoPlayButton.addEventListener('click', function() {
+            playImage.hidden = !playImage.hidden;
+            pauseImage.hidden = !pauseImage.hidden;
+            if (autoplayInterval) {
+                clearInterval(autoplayInterval);
+                autoplayInterval = null;
+            } else {
+                autoplayInterval = setInterval(nextImage, autoplayDelay);
+            }
         });
 
-        nextButton.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % images.length;
-            showImage(currentIndex);
-        });
+        prevButton.addEventListener('click', prevImage);
+        nextButton.addEventListener('click', nextImage);
+
         const currentUrl = new URL(window.location.href)
         currentUrl.searchParams.set('forecast', `${selectedForecast}`);
         window.history.replaceState(null, null, currentUrl.toString());

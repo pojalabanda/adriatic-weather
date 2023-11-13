@@ -15,8 +15,9 @@ title: Smer in višina valov
         {% for image in waves[area].images %}
             <img src="{{ image }}" class="forecast-image hidden w-full h-auto">
         {% endfor %}
-        <button id="prevButton-{{ area }}-" class="forecast-button left-0 absolute inset-y-0 w-1/5 h-full bg-transparent flex items-center justify-start" aria-label="Previous"><img src="/assets/arrow-left.svg" alt="Previous" class="w-10 lg:w-20"></button>
-        <button id="nextButton-{{ area }}-" class="forecast-button right-0 absolute inset-y-0 w-1/5 h-full bg-transparent flex items-center justify-end" aria-label="Next"><img src="/assets/arrow-right.svg" alt="Next" class="w-10 lg:w-20"></button>
+        <button id="prevButton-{{ area }}-" class="forecast-button left-0 absolute inset-y-0 w-1/5 h-full bg-transparent flex items-center justify-start" aria-label="Previous"><img src="/assets/arrow-left.svg" alt="Previous" class="w-10 lg:w-14"></button>
+        <button id="nextButton-{{ area }}-" class="forecast-button right-0 absolute inset-y-0 w-1/5 h-full bg-transparent flex items-center justify-end" aria-label="Next"><img src="/assets/arrow-right.svg" alt="Next" class="w-10 lg:w-14"></button>
+        <button id="autoPlayButton-{{ area }}-" class="absolute bottom-0 left-0 p-2 m-2"><img id="playImage-{{ area }}-" src="/assets/control-play.svg" alt="Play" class="w-10 lg:w-14"><img id="pauseImage-{{ area }}-" src="/assets/control-pause.svg" alt="Pause" class="w-10 lg:w-14" hidden></button>
     </div>
     <div class="container mx-auto px-4">
         <div class="flex flex-col sm:flex-row justify-between items-center text-secondary">
