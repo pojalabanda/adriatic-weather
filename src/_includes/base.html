@@ -29,13 +29,12 @@
 <body class="font-serif bg-tertiary">
     <header>
         <nav class="bg-primary flex items-center p-4" aria-label="Main">
-            <a href="/"><img src="/assets/logo-pojalabanda.svg" alt="{{ site.host }}" class="h-12 mr-4"></a>
-
-            <div class="flex space-x-4">
-
-                <div id="pageTitle" class="font-bold">{{ title }} </div>
-
-                <select id="areaSelector" class="hidden border border-gray-300 rounded-md p-2">
+            <div class="flex-1 flex space-x-4 items-center justify-center md:justify-start">
+                <a href="/"><img src="/assets/logo-pojalabanda.svg" alt="{{ site.host }}" class="h-12 mr-4"></a>
+                <h1 class="font-bold text-secondary">{{ title }}</h1>
+            </div>
+            <div class="flex-1 flex space-x-4 items-center justify-center">
+                <select id="areaSelector" class="hidden text-secondary border border-gray-300 rounded-md p-2">
                     {% assign path = page.filePathStem | remove_first: '/' %}
                     {% assign adriaticStr = "adriatic" %}
                     {% if path contains adriaticStr %}
@@ -48,7 +47,7 @@
                     {% endif %}
                 </select>
 
-                <select id="forecastSelector" class="hidden border border-gray-300 rounded-md p-2">
+                <select id="forecastSelector" class="hidden text-secondary border border-gray-300 rounded-md p-2">
                     {% assign adriaticStr = "adriatic" %}
                     {% if page.filePathStem contains adriaticStr %}
                         {% for fc in adriatic["adriatic"] %}
