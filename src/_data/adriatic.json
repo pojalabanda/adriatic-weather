@@ -87,7 +87,7 @@
                 "https://prognoza.hr/nauticari/uk_naob_jadran_72_e.png"
             ]
         },
-        "rain": {
+        "precipation": {
             "source": "https://meteo.hr/prognoze_e.php?section=prognoze_model&param=prog_nauticari&el=jadran&it=uk_obo_",
             "images": [
                 "https://prognoza.hr/nauticari/uk_obo_jadran_06_e.png",
@@ -204,7 +204,7 @@
                 "https://prognoza.hr/nauticari/uk_naob_sj_jadran_72_e.png"
             ]
         },
-        "rain": {
+        "precipation": {
             "source": "https://meteo.hr/prognoze_e.php?section=prognoze_model&param=prog_nauticari&el=sj_jadran&it=uk_obo_",
             "images": [
                 "https://prognoza.hr/nauticari/uk_obo_sj_jadran_06_e.png",
@@ -321,7 +321,7 @@
                 "https://prognoza.hr/nauticari/uk_naob_sr_jadran_72_e.png"
             ]
         },
-        "rain": {
+        "precipation": {
             "source": "https://meteo.hr/prognoze_e.php?section=prognoze_model&param=prog_nauticari&el=sr_jadran&it=uk_obo_",
             "images": [
                 "https://prognoza.hr/nauticari/uk_obo_sr_jadran_06_e.png",
@@ -438,7 +438,7 @@
                 "https://prognoza.hr/nauticari/uk_naob_ju_jadran_72_e.png"
             ]
         },
-        "rain": {
+        "precipation": {
             "source": "https://meteo.hr/prognoze_e.php?section=prognoze_model&param=prog_nauticari&el=ju_jadran&it=uk_obo_",
             "images": [
                 "https://prognoza.hr/nauticari/uk_obo_ju_jadran_06_e.png",

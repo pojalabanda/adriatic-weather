@@ -34,13 +34,15 @@
             <div class="flex space-x-4">
                 <select id="areaSelector" class="hidden border border-gray-300 rounded-md p-2">
                     {% for ar in adriatic %}
-                        <option value="{{ ar[0] }}" {% if ar[0] == area %}selected{% endif %}>{{ ar[0] }}</option>
+                        {% assign name = nameMap[ar[0]] %}
+                        <option value="{{ ar[0] }}" {% if ar[0] == area %}selected{% endif %}>{{ name }}</option>
                     {% endfor %}
                 </select>
 
                 <select id="forecastSelector" class="hidden border border-gray-300 rounded-md p-2">
                     {% for fc in adriatic["adriatic"] %}
-                        <option value="{{ fc[0] }}">{{ fc[0] }}</option>
+                        {% assign name = nameMap[fc[0]] %}
+                        <option value="{{ fc[0] }}">{{ name }}</option>
                     {% endfor %}
                 </select>
             </div>

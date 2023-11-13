@@ -36,7 +36,7 @@ if __name__ == "__main__":
         ('wind', ''),
         ('gusts', 'uvgst_'),
         ('clouds', 'uk_naob_'),
-        ('rain', 'uk_obo_'),
+        ('precipation', 'uk_obo_'),
     ]
 
     all_data = {}
