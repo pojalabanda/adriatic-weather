@@ -1,4 +1,6 @@
 let currentIndex = 0;
+let touchstartX = 0;
+let touchendX = 0;
 let images = [];
 const areaSelector = document.getElementById('areaSelector');
 const forecastSelector = document.getElementById('forecastSelector');
@@ -18,6 +20,11 @@ function prevImage() {
 function nextImage() {
     currentIndex = (currentIndex + 1) % images.length;
     showImage(currentIndex);
+}
+
+function handleSwipe() {
+    if (touchendX < touchstartX) nextImage();
+    else if (touchendX > touchstartX) prevImage();
 }
 
 function updateCarousel() {
@@ -43,7 +50,6 @@ function updateCarousel() {
         images = selectedCarousel.querySelectorAll('.forecast-image');
         showImage(currentIndex)
 
-
         autoPlayButton.addEventListener('click', function() {
             playImage.hidden = !playImage.hidden;
             pauseImage.hidden = !pauseImage.hidden;
@@ -57,6 +63,17 @@ function updateCarousel() {
 
         prevButton.addEventListener('click', prevImage);
         nextButton.addEventListener('click', nextImage);
+
+        const carousel = document.getElementById('carousel');
+
+        selectedCarousel.addEventListener('touchstart', e => {
+            touchstartX = e.changedTouches[0].screenX;
+        });
+
+        selectedCarousel.addEventListener('touchend', e => {
+            touchendX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
 
         const currentUrl = new URL(window.location.href)
         currentUrl.searchParams.set('forecast', `${selectedForecast}`);
@@ -92,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const timezoneOffsetInHours = (now.getTimezoneOffset() / 60) * -1; // reverse sign
     const formattedNumber = `${timezoneOffsetInHours > 0 ? '+' : (timezoneOffsetInHours < 0 ? '-' : '')}${timezoneOffsetInHours}`;
     const allTimezones = document.querySelectorAll('.timezoneDifference');
-    allTimezones.forEach(tz => tz.textContent = `UTC na lokalni čas: ${formattedNumber}h`);
+    allTimezones.forEach(tz => tz.textContent = `UTC na vaš čas: ${formattedNumber}h`);
 
     updateCarousel();
 });
