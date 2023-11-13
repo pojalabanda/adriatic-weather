@@ -1,7 +1,9 @@
-let currentIndex = 0;
 let touchstartX = 0;
 let touchendX = 0;
 let images = [];
+let currentIndex = 0;
+let autoplayInterval = null;
+const autoplayDelay = 1000;
 const areaSelector = document.getElementById('areaSelector');
 const forecastSelector = document.getElementById('forecastSelector');
 
@@ -22,6 +24,13 @@ function nextImage() {
     showImage(currentIndex);
 }
 
+function resetAutoPlay() {
+    if (autoplayInterval) {
+        clearInterval(autoplayInterval);
+        autoplayInterval = null;
+    }
+}
+
 function handleSwipe() {
     if (touchendX < touchstartX) nextImage();
     else if (touchendX > touchstartX) prevImage();
@@ -30,41 +39,39 @@ function handleSwipe() {
 function updateCarousel() {
     const selectedArea = areaSelector.value;
     const selectedForecast = forecastSelector.value;
-    const forecastId = `forecast-${selectedArea}-${selectedForecast}`;
+    const forecastId = `${selectedArea}-${selectedForecast}`;
     const allForecasts = document.querySelectorAll('.forecast');
 
     allForecasts.forEach(fc => fc.classList.add('hidden'));
 
-    const selectedCarousel = document.getElementById(forecastId);
+    const selectedCarousel = document.getElementById(`forecast-${forecastId}`);
     if (selectedCarousel) {
-        let autoplayInterval;
-        const autoplayDelay = 1000;
-        const prevButton = document.getElementById(`prevButton-${selectedArea}-${selectedForecast}`);
-        const nextButton = document.getElementById(`nextButton-${selectedArea}-${selectedForecast}`);
-        const autoPlayButton = document.getElementById(`autoPlayButton-${selectedArea}-${selectedForecast}`);
-        const playImage = document.getElementById(`playImage-${selectedArea}-${selectedForecast}`);
-        const pauseImage = document.getElementById(`pauseImage-${selectedArea}-${selectedForecast}`);
+        const prevButton = document.getElementById(`prevButton-${forecastId}`);
+        const nextButton = document.getElementById(`nextButton-${forecastId}`);
+        const autoPlayButton = document.getElementById(`autoPlayButton-${forecastId}`);
+        const playImage = document.getElementById(`playImage-${forecastId}`);
+        const pauseImage = document.getElementById(`pauseImage-${forecastId}`);
 
         selectedCarousel.classList.remove('hidden');
+        resetAutoPlay();
+        playImage.hidden = false;
+        pauseImage.hidden = true;
         currentIndex = 0;
         images = selectedCarousel.querySelectorAll('.forecast-image');
         showImage(currentIndex)
+
+        prevButton.addEventListener('click', prevImage);
+        nextButton.addEventListener('click', nextImage);
 
         autoPlayButton.addEventListener('click', function() {
             playImage.hidden = !playImage.hidden;
             pauseImage.hidden = !pauseImage.hidden;
             if (autoplayInterval) {
-                clearInterval(autoplayInterval);
-                autoplayInterval = null;
+                resetAutoPlay();
             } else {
                 autoplayInterval = setInterval(nextImage, autoplayDelay);
             }
         });
-
-        prevButton.addEventListener('click', prevImage);
-        nextButton.addEventListener('click', nextImage);
-
-        const carousel = document.getElementById('carousel');
 
         selectedCarousel.addEventListener('touchstart', e => {
             touchstartX = e.changedTouches[0].screenX;
