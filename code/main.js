@@ -69,7 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const now = new Date();
     const timezoneOffsetInHours = (now.getTimezoneOffset() / 60) * -1; // reverse sign
     const formattedNumber = `${timezoneOffsetInHours > 0 ? '+' : (timezoneOffsetInHours < 0 ? '-' : '')}${timezoneOffsetInHours}`;
-    document.getElementById('timezoneDifference').textContent = `UTC na lokalni čas: ${formattedNumber}h`;
+    const allTimezones = document.querySelectorAll('.timezoneDifference');
+    allTimezones.forEach(tz => tz.textContent = `UTC na lokalni čas: ${formattedNumber}h`);
 
     updateCarousel();
 });
