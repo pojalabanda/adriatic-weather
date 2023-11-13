@@ -54,18 +54,10 @@
         {% endblock %}
     </main>
 
-    <footer class="bg-primary text-secondary py-4 mt-4">
-        <div class="container mx-auto px-4">
-          <div class="flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-2 md:mb-0">
-              <p><a href="https://meteo.hr/" target="_blank" rel="noopener noreferrer" class="no-underline border-b-2 border-link hover:bg-link-hover">meteo.hr</a> - vremenske napovedi Aladin/HR</p>
-            </div>
-
-            <div>
-              <p>Storitev nudi <a href="https://pojalabanda.com" target="_blank" class="no-underline border-b-2 border-link hover:bg-link-hover">
-                pojalabanda.com</a></p>
-            </div>
-          </div>
+    <footer class="bg-primary text-secondary py-4 mt-4 text-center">
+        <div>
+            <p>Storitev gosti <a href="https://pojalabanda.com" target="_blank" class="no-underline border-b-2 border-link hover:bg-link-hover">
+            pojalabanda.com</a>, slovenski jadralni forum</p>
         </div>
     </footer>
 
@@ -139,6 +131,11 @@
                 forecastSelector.classList.remove('hidden');
                 updateCarousel();
             }
+
+            const now = new Date();
+            const timezoneOffsetInHours = (now.getTimezoneOffset() / 60) * -1; // reverse sign
+            const formattedNumber = `${timezoneOffsetInHours > 0 ? '+' : (timezoneOffsetInHours < 0 ? '-' : '')}${timezoneOffsetInHours}`;
+            document.getElementById('timezoneDifference').textContent = `UTC na lokalni čas: ${formattedNumber}h`;
         });
     </script>
 
