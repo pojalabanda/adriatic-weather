@@ -6,7 +6,7 @@
   "scripts": {
     "start": "eleventy --serve --incremental",
     "build": "rm -rf dist && eleventy",
-    "deploy": "rsync -av --delete dist/ root@pojalabanda.com:/var/caddy/adriatic/",
+    "deploy": "rsync -av --delete dist/ root@pojalabanda.com:/var/caddy/vreme/",
     "clean": "rm -rf dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
