@@ -36,11 +36,10 @@ function updateCarousel() {
             currentIndex = (currentIndex + 1) % images.length;
             showImage(currentIndex);
         });
+        const currentUrl = new URL(window.location.href)
+        currentUrl.searchParams.set('forecast', `${selectedForecast}`);
+        window.history.replaceState(null, null, currentUrl.toString());
     }
-
-    currentUrl = new URL(window.location.href)
-    currentUrl.searchParams.set('forecast', `${selectedForecast}`);
-    window.history.replaceState(null, null, currentUrl.toString());
 }
 
 function updateForecast() {
@@ -66,10 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
         areaSelector.classList.remove('hidden');
         forecastSelector.classList.remove('hidden');
     }
-    updateCarousel();
 
     const now = new Date();
     const timezoneOffsetInHours = (now.getTimezoneOffset() / 60) * -1; // reverse sign
     const formattedNumber = `${timezoneOffsetInHours > 0 ? '+' : (timezoneOffsetInHours < 0 ? '-' : '')}${timezoneOffsetInHours}`;
     document.getElementById('timezoneDifference').textContent = `UTC na lokalni čas: ${formattedNumber}h`;
+
+    updateCarousel();
 });
