@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
+    <title>{{ title }} - {{ site.host }}</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="/styles/main.sass">
     <meta name="google-site-verification" content="TBD" />
     <meta name="description" content="{{ summary }}">
-    <meta property="og:title" content="{{ title }}">
+    <meta property="og:title" content="{{ title }} - {{ site.host }}">
     <meta property="og:type" content="article">
     <meta property="og:description" content="{{ summary }}">
     <meta property="og:site_name" content="Vremenska napoved za Jadran - Adriatic Weather Forecast">
@@ -29,7 +29,7 @@
 <body class="font-serif bg-tertiary">
     <header>
         <nav class="bg-primary flex items-center p-4" aria-label="Main">
-            <a href="/"><img src="/assets/logo-pojalabanda.svg" alt="pojalabanda.com" class="h-12 mr-4"></a>
+            <a href="/"><img src="/assets/logo-pojalabanda.svg" alt="{{ site.host }}" class="h-12 mr-4"></a>
 
             <div class="flex space-x-4">
                 <select id="areaSelector" class="hidden border border-gray-300 rounded-md p-2">
