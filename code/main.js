@@ -65,8 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname.startsWith('/adriatic')) {
         areaSelector.classList.remove('hidden');
         forecastSelector.classList.remove('hidden');
-        updateCarousel();
     }
+    else {
+        pageTitle.classList.remove('hidden');
+    }
+    updateCarousel();
 
     const now = new Date();
     const timezoneOffsetInHours = (now.getTimezoneOffset() / 60) * -1; // reverse sign

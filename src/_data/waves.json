@@ -1,0 +1,35 @@
+{
+    "waves": {
+        "source": "https://meteo.hr/prognoze_e.php?section=prognoze_model&param=prog_nauticari&el=val_we",
+        "images": [
+            "https://prognoza.hr/valovi/val_we.1.png",
+            "https://prognoza.hr/valovi/val_we.2.png",
+            "https://prognoza.hr/valovi/val_we.3.png",
+            "https://prognoza.hr/valovi/val_we.4.png",
+            "https://prognoza.hr/valovi/val_we.5.png",
+            "https://prognoza.hr/valovi/val_we.6.png",
+            "https://prognoza.hr/valovi/val_we.7.png",
+            "https://prognoza.hr/valovi/val_we.8.png",
+            "https://prognoza.hr/valovi/val_we.9.png",
+            "https://prognoza.hr/valovi/val_we.10.png",
+            "https://prognoza.hr/valovi/val_we.11.png",
+            "https://prognoza.hr/valovi/val_we.12.png",
+            "https://prognoza.hr/valovi/val_we.13.png",
+            "https://prognoza.hr/valovi/val_we.14.png",
+            "https://prognoza.hr/valovi/val_we.15.png",
+            "https://prognoza.hr/valovi/val_we.16.png",
+            "https://prognoza.hr/valovi/val_we.17.png",
+            "https://prognoza.hr/valovi/val_we.18.png",
+            "https://prognoza.hr/valovi/val_we.19.png",
+            "https://prognoza.hr/valovi/val_we.20.png",
+            "https://prognoza.hr/valovi/val_we.21.png",
+            "https://prognoza.hr/valovi/val_we.22.png",
+            "https://prognoza.hr/valovi/val_we.23.png",
+            "https://prognoza.hr/valovi/val_we.24.png",
+            "https://prognoza.hr/valovi/val_we.25.png",
+            "https://prognoza.hr/valovi/val_we.26.png",
+            "https://prognoza.hr/valovi/val_we.27.png",
+            "https://prognoza.hr/valovi/val_we.28.png"
+        ]
+    }
+}

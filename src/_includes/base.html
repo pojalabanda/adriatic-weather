@@ -31,19 +31,32 @@
         <nav class="bg-primary flex items-center p-4" aria-label="Main">
             <a href="/"><img src="/assets/logo-pojalabanda.svg" alt="{{ site.host }}" class="h-12 mr-4"></a>
 
+            <div id="pageTitle" class="hidden font-bold">{{ title }} </div>
+
             <div class="flex space-x-4">
                 <select id="areaSelector" class="hidden border border-gray-300 rounded-md p-2">
-                    {% for ar in adriatic %}
-                        {% assign name = nameMap[ar[0]] %}
-                        <option value="{{ ar[0] }}" {% if ar[0] == area %}selected{% endif %}>{{ name }}</option>
-                    {% endfor %}
+                    {% assign path = page.filePathStem | remove_first: '/' %}
+                    {% assign adriaticStr = "adriatic" %}
+                    {% if path contains adriaticStr %}
+                        {% for ar in adriatic %}
+                            {% assign name = nameMap[ar[0]] %}
+                            <option value="{{ ar[0] }}" {% if ar[0] == area %}selected{% endif %}>{{ name }}</option>
+                        {% endfor %}
+                    {% else %}
+                        <option value="{{ path }}" selected>{{ path }}</option>
+                    {% endif %}
                 </select>
 
                 <select id="forecastSelector" class="hidden border border-gray-300 rounded-md p-2">
-                    {% for fc in adriatic["adriatic"] %}
-                        {% assign name = nameMap[fc[0]] %}
-                        <option value="{{ fc[0] }}">{{ name }}</option>
-                    {% endfor %}
+                    {% assign adriaticStr = "adriatic" %}
+                    {% if page.filePathStem contains adriaticStr %}
+                        {% for fc in adriatic["adriatic"] %}
+                            {% assign name = nameMap[fc[0]] %}
+                            <option value="{{ fc[0] }}">{{ name }}</option>
+                        {% endfor %}
+                    {% else %}
+                        <option value="" selected></option>
+                    {% endif %}
                 </select>
             </div>
         </nav>
